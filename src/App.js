@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
-const QUOTE = {
+let currentQuote = {
   text: '',
   author: ''
 };
@@ -14,13 +14,20 @@ class App extends React.Component {
       text: '',
       auther: ''
     };
+    this.generateQuote = this.generateQuote.bind(this);
+  }
+  generateQuote(){
+    this.setState({
+      text: 'Hello',
+      auther: '-Me'
+    });
   }
   render() {
     return (
-    <div id='quote-box'>
+    <div id='quote-box' className='container center'>
       <h1>Random Quote Generator</h1>
-      <DisplayQuote />
-      <button id='new-quote'>Generate</button>
+      <DisplayQuote text={this.state.text} auther={this.state.auther}/>
+      <button id='new-quote' onClick={this.generateQuote}>Generate</button>
       <br />
       <a id='tweet-quote' href='twitter.com/intent/tweet' target='_blank'>Tweet-quote</a>
     </div>
@@ -28,11 +35,11 @@ class App extends React.Component {
   }
 }
 
-function DisplayQuote(){
+function DisplayQuote(props){
   return(
     <div id='quote'>
-      <p id='text'>text</p>
-      <p id='author'>author</p>
+      <p id='text'>{props.text}</p>
+      <p id='author'>{props.auther}</p>
     </div>
   );
 }
