@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
-
 class App extends React.Component {
+  // A class to handle the view.
   constructor(props){
     super(props);
     this.quotesObj = {};
@@ -28,6 +27,7 @@ class App extends React.Component {
   }
 
   newQuote(){
+    changeColors();
     // Generate random quote and set state.
     let randomIndex = Math.floor(Math.random() * this.quotesObj.length);
     let newQuote = this.quotesObj[randomIndex];
@@ -38,14 +38,29 @@ class App extends React.Component {
   }
 
   render() {
+    // Render view.
     return (
-    <div id='quote-box'>
-      <h1>Random Quote Generator</h1>
-      <p id='text'>{this.state.text}</p>
-      <p id='author'>- {this.state.author}</p>
-      <button id='new-quote' onClick={this.newQuote}>Generate</button>
+    <div id='quote-box' className='card bg-warning'>
+      <div className='card-header'>
+        <h2><b>Quote Generator</b></h2>
+      </div>
       <br />
-      <a id='tweet-quote' href='twitter.com/intent/tweet' target='_blank'>Tweet-quote</a>
+      <div className='card-body'>
+        <blockquote className='blockquote'>
+          <p id='text' className='lead'><strong>{this.state.text}</strong></p>
+          <footer className="blockquote-footer">
+            <cite id='author'>
+              {this.state.author ? this.state.author: 'Unknown'}
+            </cite>
+          </footer>
+        </blockquote>
+      </div>
+      <div className='card-footer'>
+        <a id='tweet-quote'href='twitter.com/intent/tweet' className='float-left' target='_blank'>
+          <i class="fa fa-3x fa-twitter" />
+        </a>
+        <button id='new-quote' className='btn btn-success float-right' onClick={this.newQuote}>Generate</button>
+      </div>
     </div>
     );
   }
