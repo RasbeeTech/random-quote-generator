@@ -1,6 +1,6 @@
 {
-  "short_name": "Quote Generator",
-  "name": "Quote Generator",
+  "short_name": "Quote-Generator",
+  "name": "Quote-Generator",
   "icons": [
     {
       "src": "quoteIcon.png",
